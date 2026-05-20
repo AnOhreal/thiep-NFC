@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lời Chúc Dành Cho Bạn</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        /* Khung chứa các slide */
+        .slide-container {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            height: 600px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        /* Định dạng từng slide */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+            pointer-events: none;
+        }
+        /* Khi slide được kích hoạt */
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+        /* Hình ảnh trong slide */
+        .slide img {
+            width: 85%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            /* Animation cho ảnh hiện lên */
+            transform: translateY(20px);
+            transition: transform 0.8s 0.3s ease;
+        }
+        .slide.active img {
+            transform: translateY(0);
+        }
+        /* Lời chúc trong slide */
+        .slide p {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            line-height: 1.6;
+            font-weight: 500;
+            /* Animation cho chữ */
+            opacity: 0;
+            transition: opacity 0.8s 0.5s ease;
+        }
+        .slide.active p {
+            opacity: 1;
+        }
+        /* Nút bấm chuyển slide */
+        .nav-btn {
+            position: absolute;
+            bottom: 20px;
+            background: #ff477e;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 71, 126, 0.4);
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        .nav-btn:hover {
+            background: #ff2a65;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
 
+<div class="slide-container">
+    
+    <!-- SLIDE 1 -->
+    <div class="slide active">
+        <!-- Thay link ảnh của bạn vào đây -->
+        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=500" alt="Ảnh 1">
+        <p>Hé lộ món quà bí mật dành cho ngày hôm nay nè... Bấm tiếp tục xem nhé! ❤️</p>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide">
+        <!-- Thay link ảnh của bạn vào đây -->
+        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=500" alt="Ảnh 2">
+        <p>Chúc người thương của anh luôn mỉm cười thật tươi, mỗi ngày trôi qua đều ngập tràn niềm vui!</p>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide">
+        <!-- Thay link ảnh của bạn vào đây -->
+        <img src="https://images.unsplash.com/photo-1494972308805-463bc619b34e?q=80&w=500" alt="Ảnh 3">
+        <p>Cảm ơn em vì đã xuất hiện và cùng anh viết nên những kỷ niệm thật đẹp. Yêu em rất nhiều! 🎉</p>
+    </div>
+
+    <!-- Nút điều khiển -->
+    <button class="nav-btn" id="nextBtn" style="right: 20px;">Tiếp tục →</button>
+</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentIndex = 0;
+
+    nextBtn.addEventListener('click', () => {
+        // Tắt slide hiện tại
+        slides[currentIndex].classList.remove('active');
+        
+        // Tăng index lên slide tiếp theo
+        currentIndex = (currentIndex + 1) % slides.length;
+        
+        // Bật slide mới
+        slides[currentIndex].classList.add('active');
+
+        // Nếu đến slide cuối cùng, đổi chữ nút bấm
+        if (currentIndex === slides.length - 1) {
+            nextBtn.textContent = "Xem lại từ đầu ↺";
+        } else {
+            nextBtn.textContent = "Tiếp tục →";
+        }
+    });
+</script>
+
+</body>
+</html>
